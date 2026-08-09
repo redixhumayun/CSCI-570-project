@@ -33,6 +33,8 @@ BASE_CASE_THRESHOLD = 2000
 
 
 def _grow(base, indices):
+    """Repeatedly double `base` by inserting a copy of the current string
+    right after each 0-indexed position in `indices`, in order."""
     s = base
     for n in indices:
         s = s[: n + 1] + s + s[n + 1 :]
@@ -40,6 +42,12 @@ def _grow(base, indices):
 
 
 def parse_and_generate(path):
+    """Read the generator input file and produce the two strings to align.
+
+    Format: s0, then s's insertion indices (one per line, until a
+    non-digit line is hit), then t0, then t's insertion indices (rest of
+    the file). Returns (X, Y) = (_grow(s0, s_indices), _grow(t0, t_indices)).
+    """
     with open(path) as f:
         lines = [ln.strip() for ln in f if ln.strip()]
 
