@@ -1,0 +1,6 @@
+case_id,input_file,expected_output_file,problem_size,expected_cost,basic_cost,efficient_cost,basic_ok,efficient_ok,basic_time_ms,efficient_time_ms,basic_memory_kb,efficient_memory_kb
+1,input1.txt,output1.txt,128,1296,1296,1296,True,True,1.117229,1.571894,16012.000000,16012.000000
+2,input2.txt,output2.txt,96,1128,1128,1128,True,True,0.755548,0.809669,16012.000000,16012.000000
+3,input3.txt,output3.txt,256,1980,1980,1980,True,True,4.815578,4.690886,16012.000000,16012.000000
+4,input4.txt,output4.txt,256,60,60,60,True,True,3.191710,3.264666,16012.000000,16012.000000
+5,input5.txt,output5.txt,8192,63996,63996,63996,True,True,3723.159075,6250.895739,668252.000000,21200.000000

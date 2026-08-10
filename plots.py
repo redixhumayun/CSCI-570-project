@@ -5,7 +5,7 @@ This script:
 1) Reads every input file in a Datapoints/ folder.
 2) Runs the basic and memory-efficient implementations on each input.
 3) Collects problem size (m + n), CPU time, and memory usage.
-4) Writes a CSV table and two Plotly graphs (HTML + optional PNG).
+4) Writes a CSV table and two Plotly graphs as HTML.
 
 Expected project layout:
     project_root/
@@ -130,12 +130,6 @@ def build_line_plot(go, title: str, y_label: str, x_values, basic_values, effici
     return fig
 
 
-def try_write_png(fig, png_path: Path) -> bool:
-    try:
-        fig.write_image(str(png_path))
-        return True
-    except Exception:
-        return False
 
 
 def main() -> None:
@@ -291,23 +285,10 @@ def main() -> None:
     time_fig.write_html(str(time_html), include_plotlyjs="cdn")
     mem_fig.write_html(str(mem_html), include_plotlyjs="cdn")
 
-    time_png = output_dir / "time_vs_problem_size.png"
-    mem_png = output_dir / "memory_vs_problem_size.png"
-    time_png_ok = try_write_png(time_fig, time_png)
-    mem_png_ok = try_write_png(mem_fig, mem_png)
-
     print(f"Wrote: {results_csv}")
     print(f"Wrote: {table_path}")
     print(f"Wrote: {time_html}")
     print(f"Wrote: {mem_html}")
-    if time_png_ok:
-        print(f"Wrote: {time_png}")
-    else:
-        print("PNG export for time plot skipped (kaleido not installed).")
-    if mem_png_ok:
-        print(f"Wrote: {mem_png}")
-    else:
-        print("PNG export for memory plot skipped (kaleido not installed).")
 
 
 if __name__ == "__main__":
